@@ -25,11 +25,11 @@ public class AssignmentDTO implements Serializable {
 
     }
 
-    public static List<AssignmentDTO> getDtos(List<Assignment> assignments){
+   /* public static List<AssignmentDTO> getDtos(List<Assignment> assignments){
         List<AssignmentDTO> assignmentDTOS = new ArrayList();
         assignments.forEach(assignment->assignmentDTOS.add(new AssignmentDTO(assignment)));
         return assignmentDTOS;
-    }
+    }*/
 
     public Long getId() {
         return id;
@@ -75,6 +75,6 @@ public class AssignmentDTO implements Serializable {
                 "famName = " + famName + ", " +
                 "date = " + date + ", " +
                 "info = " + info + ", " +
-                "members = " + members ;
+                "members = " + members;
     }
 }

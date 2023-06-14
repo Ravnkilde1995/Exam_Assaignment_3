@@ -1,6 +1,10 @@
 package dtos;
 
+import entities.Dinnerevent;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class DinnereventDTO implements Serializable {
@@ -9,11 +13,17 @@ public class DinnereventDTO implements Serializable {
     private final String dish;
     private final int price;
 
-    public DinnereventDTO(String time, String location, String dish, int price) {
-        this.time = time;
-        this.location = location;
-        this.dish = dish;
-        this.price = price;
+    public DinnereventDTO(Dinnerevent d) {
+        this.time = d.getTime();
+        this.location = d.getLocation();
+        this.dish = d.getDish();
+        this.price = d.getPrice();
+    }
+
+    public static List<DinnereventDTO> getDtos(List<Dinnerevent> events) {
+        List<DinnereventDTO> dinnereventDTOS = new ArrayList();
+        events.forEach(d -> dinnereventDTOS.add(new DinnereventDTO(d)));
+        return dinnereventDTOS;
     }
 
     public String getTime() {

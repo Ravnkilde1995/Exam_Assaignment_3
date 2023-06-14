@@ -70,7 +70,7 @@ public class Assignment {
     }
 
     public void addMembers(Member member) {
-        if(member != null){
+        if (member != null) {
             this.members.add(member);
             member.getAssignments().add(this);
         }
