@@ -42,13 +42,19 @@ public class AssignmentFacade {
         }
         return new AssignmentDTO(a);
     }
+
     // Delete function
-    public void removeAssignment(long id) {
+    public AssignmentDTO removeAssignment(long id) {
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
         Assignment assignment = em.find(Assignment.class, id);
-        em.remove(assignment);
-        em.getTransaction().commit();
-        em.close();
+
+        try {
+            em.getTransaction().begin();
+            em.remove(assignment);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        return new AssignmentDTO(assignment);
     }
 }

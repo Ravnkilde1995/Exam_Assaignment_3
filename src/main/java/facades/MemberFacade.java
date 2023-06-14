@@ -1,5 +1,6 @@
 package facades;
 
+import dtos.DinnereventDTO;
 import dtos.MemberDTO;
 import entities.Dinnerevent;
 import entities.Member;
@@ -41,13 +42,19 @@ public class MemberFacade {
         }
         return new MemberDTO(m);
     }
+
     // Delete function
-    public void removeMember(long id) {
+    public MemberDTO removeMember(long id) {
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
         Member member = em.find(Member.class, id);
-        em.remove(member);
-        em.getTransaction().commit();
-        em.close();
+
+        try {
+            em.getTransaction().begin();
+            em.remove(member);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        return new MemberDTO(member);
     }
 }

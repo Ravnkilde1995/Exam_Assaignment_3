@@ -1,6 +1,8 @@
 package facades;
 
+import dtos.AssignmentDTO;
 import dtos.DinnereventDTO;
+import entities.Assignment;
 import entities.Dinnerevent;
 
 import javax.persistence.EntityManager;
@@ -16,7 +18,7 @@ public class DinnereventFacade {
     public DinnereventFacade() {
     }
 
-    public static DinnereventFacade getAssignmentFacade(EntityManagerFactory _emf) {
+    public static DinnereventFacade getDinnereventFacade(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
             instance = new DinnereventFacade();
@@ -76,13 +78,18 @@ public class DinnereventFacade {
     }
 
     // Delete function
-    public void removeEvent(long id) {
+    public DinnereventDTO removeEvent(long id) {
         EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
         Dinnerevent event = em.find(Dinnerevent.class, id);
-        em.remove(event);
-        em.getTransaction().commit();
-        em.close();
+
+        try {
+            em.getTransaction().begin();
+            em.remove(event);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+        return new DinnereventDTO(event);
     }
 
 }
