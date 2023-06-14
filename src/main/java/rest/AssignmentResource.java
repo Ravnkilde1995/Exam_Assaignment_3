@@ -14,7 +14,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
 
-@Path("Assignment")
+@Path("assignment")
 public class AssignmentResource {
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     private static final AssignmentFacade assignmentFacade = AssignmentFacade.getAssignmentFacade(EMF);
@@ -29,7 +29,7 @@ public class AssignmentResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getInfoForAll() {
-        return "{\"msg\":\"Hello Assignment\"}";
+        return "{\"msg\":\"Hello assignment\"}";
     }
 
     //Just to verify if the database is setup

@@ -57,4 +57,14 @@ public class AssignmentFacade {
         }
         return new AssignmentDTO(assignment);
     }
+
+    public long getAssignmentCount() {
+        EntityManager em = getEntityManager();
+        try {
+            long assignmentCount = (long) em.createQuery("SELECT COUNT(r) FROM Assignment r").getSingleResult();
+            return assignmentCount;
+        } finally {
+            em.close();
+        }
+    }
 }
