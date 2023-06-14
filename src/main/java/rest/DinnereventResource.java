@@ -17,7 +17,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
 
-@Path("Event")
+@Path("event")
 public class DinnereventResource {
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     private static final DinnereventFacade dinnereventFacade = DinnereventFacade.getDinnereventFacade(EMF);
@@ -45,23 +45,12 @@ public class DinnereventResource {
         try {
             TypedQuery<Dinnerevent> query = em.createQuery("select u from Dinnerevent u", entities.Dinnerevent.class);
             List<Dinnerevent> dinnerevents = query.getResultList();
-            return "[" + dinnerevents.size() + "]";
+            return "[" + dinnerevents + "]";
         } finally {
             em.close();
         }
     }
 
-    // TO DO: return liste af alle dinner events..
-   /* @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("events")
-    public List<DinnereventDTO> getAllEvents() {
-        EntityManager em = EMF.createEntityManager();
-        TypedQuery<Dinnerevent> query = em.createQuery("SELECT d FROM Dinnerevent d", Dinnerevent.class);
-        List<Dinnerevent> d = query.getResultList();
-        em.close();
-        return DinnereventDTO.getDtos(d);
-    }*/
 
     @POST
     @Produces({MediaType.APPLICATION_JSON})

@@ -17,7 +17,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.util.List;
 
-@Path("Member")
+@Path("member")
 public class MemberResource {
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     private static final MemberFacade memberFacade = MemberFacade.getMemberFacade(EMF);
