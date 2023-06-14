@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "assaignment")
+@Table(name = "assignment")
 public class Assignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,28 +17,19 @@ public class Assignment {
     private Date date;
     private String info;
     @ManyToMany(mappedBy = "assignments", cascade = CascadeType.PERSIST)
-    private List<Dinnerevent> events;
+    private List<Member> members;
+    @ManyToOne
+    private Dinnerevent event;
+
 
     public Assignment() {
     }
 
-    public Assignment(String famName, Date date, String info) {
+    public Assignment(String famName, String info) {
         this.famName = famName;
-        this.date = date;
-        //this.date = new Date();
         this.info = info;
-        this.events = new ArrayList<>();
-    }
-
-    public List<Dinnerevent> getEvent() {
-        return events;
-    }
-
-    public void addEvent(Dinnerevent event) {
-        if (event != null) {
-            this.events.add(event);
-            event.getAssignments().add(this);
-        }
+        this.date = new Date();
+        this.members = new ArrayList<>();
     }
 
     public Long getId() {
@@ -73,5 +64,35 @@ public class Assignment {
         this.info = info;
     }
 
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void addMembers(Member member) {
+        if(member != null){
+            this.members.add(member);
+            member.getAssignments().add(this);
+        }
+    }
+
+    public Dinnerevent getEvent() {
+        return event;
+    }
+
+    public void setEvent(Dinnerevent event) {
+        this.event = event;
+    }
+
+    @Override
+    public String toString() {
+        return "Assignment{" +
+                "id=" + id +
+                ", famName='" + famName + '\'' +
+                ", date=" + date +
+                ", info='" + info + '\'' +
+                ", members=" + members +
+                ", event=" + event +
+                '}';
+    }
 }
 

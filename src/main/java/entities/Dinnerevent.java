@@ -15,7 +15,7 @@ public class Dinnerevent {
     private String location;
     private String dish;
     private int price;
-    @ManyToMany
+    @OneToMany(mappedBy = "event", cascade = CascadeType.PERSIST)
     private List<Assignment> assignments;
 
     public Dinnerevent() {
@@ -65,8 +65,11 @@ public class Dinnerevent {
         return assignments;
     }
 
-    public void addAssignments(List<Assignment> assignments) {
-        this.assignments = assignments;
+    public void addAssignments(Assignment assignment) {
+        this.assignments.add(assignment);
+        if (assignment != null) {
+            assignment.setEvent(this);
+        }
     }
 
     public Long getId() {
