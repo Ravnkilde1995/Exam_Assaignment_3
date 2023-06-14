@@ -39,16 +39,12 @@ public class DinnereventResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("all")
-    public String allEvents() {
+    public List<DinnereventDTO> allEvents() {
 
-        EntityManager em = EMF.createEntityManager();
-        try {
-            TypedQuery<Dinnerevent> query = em.createQuery("select u from Dinnerevent u", entities.Dinnerevent.class);
-            List<Dinnerevent> dinnerevents = query.getResultList();
-            return "[" + dinnerevents + "]";
-        } finally {
-            em.close();
-        }
+        List<DinnereventDTO> events = dinnereventFacade.getAllEvents();
+
+        return events;
+
     }
 
 
@@ -69,5 +65,16 @@ public class DinnereventResource {
         //AssignmentDTO adto = GSON.fromJson(input, AssignmentDTO.class);
         dinnereventFacade.removeEvent(id);
         return Response.ok().build();
+    }
+
+    @PUT
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Path("{id}")
+    public Response updateEvent(@PathParam("id") long id, String input) throws Exception {
+        DinnereventDTO ddto = GSON.fromJson(input, DinnereventDTO.class);
+        System.out.println(ddto + "her her her");
+        DinnereventDTO dd =  dinnereventFacade.updateEvents(id, ddto);
+        return Response.ok().entity(dd).build();
     }
 }

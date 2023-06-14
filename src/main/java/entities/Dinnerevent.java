@@ -22,6 +22,15 @@ public class Dinnerevent {
     public Dinnerevent() {
     }
 
+    public Dinnerevent(Long id,String time, String location, String dish, int price) {
+        this.id = id;
+        this.time = time;
+        this.location = location;
+        this.dish = dish;
+        this.price = price;
+        this.assignments = new ArrayList<>();
+    }
+
     public Dinnerevent(String time, String location, String dish, int price) {
         this.time = time;
         this.location = location;
