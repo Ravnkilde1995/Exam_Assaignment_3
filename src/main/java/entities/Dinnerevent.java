@@ -80,4 +80,16 @@ public class Dinnerevent {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Dinnerevent{" +
+                "id=" + id +
+                ", time='" + time + '\'' +
+                ", location='" + location + '\'' +
+                ", dish='" + dish + '\'' +
+                ", price=" + price +
+                ", assignments=" + assignments +
+                '}';
+    }
 }

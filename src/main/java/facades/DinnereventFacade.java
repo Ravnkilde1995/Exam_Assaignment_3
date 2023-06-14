@@ -34,7 +34,6 @@ public class DinnereventFacade {
     public static DinnereventDTO createEvent(DinnereventDTO dd) {
         //create an event
         Dinnerevent d = new Dinnerevent(dd.getTime(), dd.getLocation(), dd.getDish(), dd.getPrice());
-
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
