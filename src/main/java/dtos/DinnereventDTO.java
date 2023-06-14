@@ -8,12 +8,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class DinnereventDTO implements Serializable {
+    private final Long id;
     private final String time;
     private final String location;
     private final String dish;
     private final int price;
 
     public DinnereventDTO(Dinnerevent d) {
+        this.id = d.getId();
         this.time = d.getTime();
         this.location = d.getLocation();
         this.dish = d.getDish();
@@ -24,6 +26,10 @@ public class DinnereventDTO implements Serializable {
         List<DinnereventDTO> dinnereventDTOS = new ArrayList();
         events.forEach(d -> dinnereventDTOS.add(new DinnereventDTO(d)));
         return dinnereventDTOS;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getTime() {
