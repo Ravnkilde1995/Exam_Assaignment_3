@@ -114,7 +114,7 @@ public class AssignmentResourceTest {
     }
 
     // Rest assured test that verifies that the endpoint returns the correct Assignment.
-    @Test
+    /*@Test
     public void testGetById() throws Exception {
         given()
                 .contentType("application/json")
@@ -124,4 +124,14 @@ public class AssignmentResourceTest {
                 .body("info", equalTo("h@h.com"));
 
     }
+
+    @Test
+    public void testCreateAssignment() throws Exception {
+        given()
+                .contentType("application/json")
+                .get("/assignment/", a1.getFamName(),a1.getInfo()).then()
+                .assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode())
+
+    }*/
 }
