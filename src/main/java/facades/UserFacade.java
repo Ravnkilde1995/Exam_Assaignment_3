@@ -50,6 +50,7 @@ public class UserFacade {
         Role userRole = new Role("user");
         User user = new User(username, password);
         user.addRole(userRole);
+        System.out.println(user);
         em.getTransaction().begin();
         em.persist(user);
         em.getTransaction().commit();
